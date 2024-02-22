@@ -21,13 +21,26 @@ public class Gesture : MonoBehaviour
     public Vector3[] righthandpos = new Vector3[handLandmark_number];
     public Vector3[] lefthandpos = new Vector3[handLandmark_number];
     public GameObject[] PoseLandmarks, LeftHandLandmarks, RightHandLandmarks;
+
     public static Gesture gen; // singleton
     public bool drawLandmarks = false;
     public bool trigger = false;
     private float distance;
     int totalNumberofLandmark;
+
+    //public Vector3 sphere;
+    public Vector3 flower;
+
+    //public GameObject sphereGameObject;
+    public GameObject Flower;
+    public Color originalColor;
+    public Animator animator;
+
     private void Awake()
     {
+       //if statement to test if the distance is less than or equal to a certain number
+       // average the position of the spheres first
+
         if (Gesture.gen == null)
         {
             Gesture.gen = this;
@@ -53,8 +66,14 @@ public class Gesture : MonoBehaviour
                 LeftHandLandmarks[i] = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 RightHandLandmarks[i] = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             }
+            //assign rigid bodies to generated sphere & triggers to each of them
+            //manual collider (if the finger is close to certain position, then trigger
         }
+
+        //Renderer sphereRenderer = sphereGameObject.GetComponent<Renderer>();
+        //originalColor = sphereRenderer.material.color;
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -92,5 +111,62 @@ public class Gesture : MonoBehaviour
                 idx++;
             }
         }
+
+      //averages the postion of all of the spheres in the right hand
+        Vector3 averageRightHandPos = Vector3.zero;
+        for (int i = 0; i < handLandmark_number; i++)
+        {
+            averageRightHandPos += righthandpos[i];
+        }
+        averageRightHandPos /= handLandmark_number;
+
+        //averages the postion of all of the spheres in the left hand
+        Vector3 averageLeftHandPos = Vector3.zero;
+        for (int i = 0; i < handLandmark_number; i++)
+        {
+            averageLeftHandPos += lefthandpos[i];
+        }
+        averageLeftHandPos /= handLandmark_number;
+
+        //calculates distance of average postion for each hand, and the sphere
+        //float rightDisToSphere = Vector3.Distance(averageRightHandPos, sphere);
+        //float leftDisToSphere = Vector3.Distance(averageLeftHandPos, sphere);
+
+        //distance to flower
+        float rightDisToFlower = Vector3.Distance(averageRightHandPos, flower);
+        float leftDisToFlower = Vector3.Distance(averageLeftHandPos, flower);
+
+        //debug to see distance
+        //Debug.Log("Right Hand Distance to Sphere: " + rightDisToSphere);
+        //Debug.Log("Left Hand Distance to Sphere: " + leftDisToSphere);
+
+        //changes color
+        /*if (rightDisToSphere >= 1 || leftDisToSphere >= 1)
+        {
+            Renderer sphereRenderer = sphereGameObject.GetComponent<Renderer>();
+            sphereRenderer.material.color = Color.red;
+        }
+
+        else
+        {
+            Renderer sphereRenderer = sphereGameObject.GetComponent<Renderer>();
+            sphereRenderer.material.color = originalColor;
+        }*/
+
+        //animation change
+        if (rightDisToFlower <= .5 || leftDisToFlower <= .5)
+        {
+            //switch from idle to bloom animation
+            animator.SetBool("leaveHand",false);
+            animator.SetBool("waveHand",true);
+        }
+
+        else
+        {
+            //switch from bloom to dissipate animation, then back to idle
+            animator.SetBool("waveHand",false);
+            animator.SetBool("leaveHand",true);
+        }
     }
+
 }

@@ -1,9 +1,15 @@
 {
   "dependencies": {
     "com.github.homuler.mediapipe": {
-      "version": "file:com.github.homuler.mediapipe",
+      "version": "file:C:/Users/Sophi/Downloads/GesturalControl_Unity/Packages/com.github.homuler.mediapipe",
       "depth": 0,
-      "source": "embedded",
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.unity.2d.sprite": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
       "dependencies": {}
     },
     "com.unity.collab-proxy": {
