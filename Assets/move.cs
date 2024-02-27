@@ -8,7 +8,6 @@ public class move : MonoBehaviour
     public GameObject cube;
     public float distance = 2f; // Distance between the original cube and the duplicated cube
     public int maxClones = 10;  // Maximum number of clones to keep
-
     private bool hasDuplicated = false;
 
     private void Start()

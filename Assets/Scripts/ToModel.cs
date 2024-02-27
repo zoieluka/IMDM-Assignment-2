@@ -61,6 +61,12 @@ public class ToModel : MonoBehaviour
         tkLeftArm.transform.position = -(Gesture.gen.righthandpos[12] + Gesture.gen.righthandpos[10] + Gesture.gen.righthandpos[11] + Gesture.gen.righthandpos[9]) / 4;
         tkBody.transform.position = -(Gesture.gen.righthandpos[8] + Gesture.gen.righthandpos[6] + Gesture.gen.righthandpos[7] + Gesture.gen.righthandpos[5]) / 4;
 
+        //tkBody.transform.position = new Vector3(-2 * tkBody.transform.position.x, tkBody.transform.position.y, tkBody.transform.position.z);
+        //tkRightArm.transform.position = new Vector3(-3 * tkRightArm.transform.position.x, tkRightArm.transform.position.y, tkRightArm.transform.position.z);
+        //tkLeftArm.transform.position = new Vector3(2 * tkLeftArm.transform.position.x, tkLeftArm.transform.position.y, tkLeftArm.transform.position.z);        
+        
+        //tkWhole.transform.position = -(Gesture.gen.righthandpos[8] + Gesture.gen.righthandpos[6] + Gesture.gen.righthandpos[7] + Gesture.gen.righthandpos[5]) / 4;
+        //tkWhole.transform.position = new Vector3(-3 * tkWhole.transform.position.x, tkWhole.transform.position.y, tkWhole.transform.position.z);        
 
         // 2. Update Shuffler's position
         shuffler.transform.transform.position = new Vector3(-0.5f + 0.5f*Mathf.Sin(timer), -0.76f, -0.3f + 0.3f * Mathf.Cos(timer));

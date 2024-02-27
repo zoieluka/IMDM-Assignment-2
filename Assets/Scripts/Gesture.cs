@@ -35,7 +35,6 @@ public class Gesture : MonoBehaviour
     public GameObject Flower;
     public Color originalColor;
     public Animator animator;
-
     private void Awake()
     {
        //if statement to test if the distance is less than or equal to a certain number
@@ -167,6 +166,52 @@ public class Gesture : MonoBehaviour
             animator.SetBool("waveHand",false);
             animator.SetBool("leaveHand",true);
         }
+
+        //check distance and animation state
+        //ignore this shit
+        /*if (rightDisToFlower <= 1 || leftDisToFlower <= 1)
+        {
+            //switch from idle to bloom animation
+            animator.SetBool("leaveHand",false);
+            animator.SetBool("waveHand",true);
+            if((rightDisToFlower <= .5 && animator.GetBool("waveHand")) || (leftDisToFlower <= .5 && animator.GetBool("waveHand") ))
+            {
+                Debug.Log("Hit!");
+                animator.SetBool("waveHand",false);
+                animator.SetBool("leaveHand",true);
+                if((rightDisToFlower >= 0 && animator.GetBool("leaveHand")) || (leftDisToFlower >= 0 && animator.GetBool("leaveHand") ))
+                {
+                    animator.SetBool("waveHand",true);
+                    animator.SetBool("leaveHand",false);
+                }
+                else
+                {
+                }
+            }
+            else if((rightDisToFlower > .5 && animator.GetBool("waveHand")) || (leftDisToFlower > .5 && animator.GetBool("waveHand") ))
+            {
+                Debug.Log("Miss");
+                animator.SetBool("waveHand",false);
+                animator.SetBool("leaveHand",true);
+                if((rightDisToFlower >= 0 && animator.GetBool("leaveHand")) || (leftDisToFlower >= 0 && animator.GetBool("leaveHand") ))
+                {
+                    animator.SetBool("waveHand",true);
+                    animator.SetBool("leaveHand",false);
+                }
+                else
+                {
+                }
+            }
+            else
+            {
+
+            }
+            
+        }*/
+        
+        
+        
+        
     }
 
 }
